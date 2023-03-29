@@ -13,6 +13,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import { ProfileBanner } from './components/ProfileBanner';
+import Followers from './components/Followers';
 
 
 
@@ -20,9 +21,10 @@ const App = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route  path='/'element={<Root />} >
-      <Route index   element={<ProfileBanner />} />
+      <Route path='/'element={<Root />} >
+      <Route index element={<ProfileBanner />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/followers' element={<Followers />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
 
@@ -40,28 +42,38 @@ const App = () => {
 const Root = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-white" style={{'height': "60px"}}>
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg bg-white position-relative " >
+        <div className="container-fluid">
+          <button className="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ">
-            <div className="d-flex">
+          <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
+            <div className="navbar-nav" style={{minWidth: '100%'}}>
+            <div className="d-flex w-100 justify-content-between mx-1" >
             <div className="d-flex align-items-center">
-            <img src={require('./components/logo.png')} style={{"height": "35px"}} alt="" srcset="" />
-            <h1 className="nav-title ms-2 fs-bold mt-2" style={{"font-size": "20px"}}>CipherSchools</h1>  
+            <img src={require('./components/logo.png')} style={{"height": "35px"}} alt=""  />
+            <h1 className="nav-title ms-2 fs-bold mt-2" style={{fontSize: "20px"}}>CipherSchools</h1>  
             </div>
-            {/* <div className="d-flex ms-4 align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
-                <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                            </svg>
-                            <p className='mt-3 ms-2'>Browse</p>
-                            <svg className='ms-2' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-              </svg>
-            </div> */}
+            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center px-2 rounded-pill mx-2" style={{backgroundColor: '#F2F5FA'}}>
+                <box-icon name='search-alt-2'></box-icon>
+                <input type="email" className="form-control rounded-pill border-0 noFocusBorder" style={{backgroundColor: '#F2F5FA'}} id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <box-icon name='cog'></box-icon>
+            </div>
+            <box-icon type='solid' className='mx-2' color='grey' name='bell'></box-icon>
+            <div className="dropstart me-3 ">
+            <img type='button' data-bs-toggle="dropdown" aria-expanded="false" src={require('./components/logo.png')} className='ms-3 p-0 dropdown-toggle' style={{height: '20px', margin: '5px'}} alt="" />
+            <box-icon style={{position: 'absolute', marginLeft: '-8px', marginTop: '3px', pointer: 'cursor'}} name='chevron-down'></box-icon>
+            <ul className="dropdown-menu">
+              <li><Link className='dropdown-item' to={'./'} >Profile</Link></li>
+              <li><Link className='dropdown-item' to={'./followers'} >Followers</Link></li>
+              <li><Link className='dropdown-item' to={'./login'} >Logout</Link></li>
+              
+            </ul>
+            </div>
+            
+            </div>
+            
             
             </div>
             </div>
@@ -75,7 +87,3 @@ const Root = () => {
   )}
 export default App;
 
-// <div class="navbar-nav mx-auto">
-//             <Link id='loginbtn' className='nav-link'  to='/'>Login</Link>
-//             <Link id='regbtn' className='nav-link'  to='/register'>Register</Link>
-//             <Link id='logoutbtn' className='nav-link' onClick={e => window.localStorage.clear()}  to='/'>Logout</Link>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './css/ProfessionalInfo.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfessionalInfo = (props) => {
 
@@ -14,7 +16,6 @@ const ProfessionalInfo = (props) => {
         setHighestEducation(props.ProfessionalInfo[0])
         setJob(props.ProfessionalInfo[1])
     }, [props])
-    console.log(props);
 
     const handleProfessionalInfo = () => {
         document.getElementById('disableField2').disabled = true
@@ -39,7 +40,7 @@ const ProfessionalInfo = (props) => {
             }
             else{
                 console.log(data)
-                // setProfessionalInfo(data)aa
+                toast.success('Information updated successfully')
             }
         }
         )
@@ -66,7 +67,7 @@ const ProfessionalInfo = (props) => {
             <fieldset id='disableField2' className="row" disabled>
                 <div className="row my-1">
                     <div className="col-lg-6">
-                        <label class=" mb-1 webTitles fontBlue ">Highest education</label>
+                        <label className=" mb-1 webTitles fontBlue ">Highest education</label>
                         <div className="d-flex bg-white rounded dropdown">
                         <select className='btn btn-white dropdown-toggle text-start border-0' onLoad={e=> setHighestEducation(e.target.value)} value={highestEducation} onChange={e=> setHighestEducation(e.target.value)} style={{'width': '-webkit-fill-available'}} >
                         <option className='dropdown-item' value="primary">Primary</option>
@@ -78,7 +79,7 @@ const ProfessionalInfo = (props) => {
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <label class="form-label mb-1 webTitles fontBlue ">What do you do currently?</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">What do you do currently?</label>
                         <div className="d-flex bg-white rounded dropdown">
                         <select className='btn btn-white dropdown-toggle text-start border-0' value={job} onChange={e=> setJob(e.target.value)} style={{'width': '-webkit-fill-available'}} >
                         <option className='dropdown-item' value="schooling">Schooling</option>

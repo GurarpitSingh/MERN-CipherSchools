@@ -1,12 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import About from './About'
 import './css/ProfileBanner.css'
+import Followers from './Followers'
 import Heatmap from './Heatmap'
+import Interests from './Interests'
 import Password from './Password'
 import ProfessionalInfo from './ProfessionalInfo'
 import Weblinks from './Weblinks'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProfileBanner = () => {
   const navigate = useNavigate()
@@ -21,9 +25,9 @@ export const ProfileBanner = () => {
   const [webLinks, setWebLinks] = useState({})
   const [professionalInfo, setProfessionalInfo] = useState({})
   const [password, setPassword] = useState('')
+  const [interests, setInterests] = useState([])
 
   const [about, setAbout] = useState('')
-
 
 
   useEffect(() => {
@@ -31,6 +35,7 @@ export const ProfileBanner = () => {
 
     if(localStorage.getItem('token') === null){
       navigate('/login')
+      
 
     }
     else{
@@ -51,6 +56,8 @@ export const ProfileBanner = () => {
           }
           else{
               console.log(data)
+              toast.success('Welcome back ' + data.user.name)
+
               setFirstName(data.user.name)
               setEmail(data.user.email)
               setDob(data.user.dob)
@@ -58,11 +65,13 @@ export const ProfileBanner = () => {
               setAbout(data.user.about)
               setLastName(data.user.lastName)
               setUpdatedPhone(data.user.phone)
-              setImage(data.user.image.url)
+              setImage(data.user.image? data.user.image.url: '')
 
               setWebLinks([data.user.linkedin, data.user.github, data.user.twitter, data.user.instagram, data.user.facebook, data.user.website])
               setProfessionalInfo([data.user.highestEducation, data.user.job])
               setPassword(data.user.password)
+              setInterests(data.user.interests)
+
             }
       }
       )
@@ -72,7 +81,6 @@ export const ProfileBanner = () => {
   }, [image])
 
   const updateInfo = () => {
-    alert('Updating')
     const token = window.localStorage.getItem('token')
     fetch('http://localhost:3001/api/updateInfo', {
         method: 'POST',
@@ -87,8 +95,8 @@ export const ProfileBanner = () => {
             navigate('/')
         }
         else{
-          alert('Updated Successfully')
             console.log(data)
+            toast.success('Profile Updated')
         }
     }
     )
@@ -105,18 +113,20 @@ export const ProfileBanner = () => {
     <div>
     <div className='backBanner d-flex bg-white px-5' style={{'height': "110px"}}>
         <div className='d-flex flex-column justify-content-center align-items-center' style={{'width': "110px"}}>
-          <img className='profilePhoto' src={image? image: require('./logo.png')} alt="" srcset="" />
-          <button type="button" class="btn bg-dark editIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <img className='profilePhoto' src={image? image: require('./logo.png')} alt=""  />
+          <button type="button" className="btn bg-dark editIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <box-icon type='solid' color="white" name='pencil'></box-icon>
           </button>
         </div>
       <div className='d-flex justify-content-between align-items-center ms-4' style={{'width': "100%"}}>
       <div className='d-flex flex-column justify-content-center ' >
-        <p className='text-dark mb-0 p-0 fontBlue' style={{'font-size': "1.50rem", 'font-weight': "300"}}>Hello,</p>
-        <p className='text-dark fw-bold mb-0 p-0 fontBlue' style={{'font-size': "24px"}}>{firstName}</p>
-        <p className='text-dark pt-0 fontBlue' style={{'font-size': "1rem", 'font-weight': "300"}}>{email}</p>
+        <p className='text-dark mb-0 p-0 fontBlue' style={{fontSize: "1.50rem", fontWeight: "300"}}>Hello,</p>
+        <p className='text-dark fw-bold mb-0 p-0 fontBlue' style={{fontSize: "24px"}}>{firstName}</p>
+        <p className='text-dark pt-0 fontBlue' style={{fontSize: "1rem", fontWeight: "300"}}>{email}</p>
       </div>
-      <h5>5 Followers</h5>
+      
+  <Link id='followers' className='nav-link'  to='/followers'><h5>5 Followers</h5></Link>
+
       </div>
 
 
@@ -125,41 +135,41 @@ export const ProfileBanner = () => {
 
 
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Profile Update</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header border-0">
+        <h1 className="modal-title fs-5" id="exampleModalLabel">Profile Update</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         <div className="row">
           <div className="col-4">
           <div className="d-flex h-100 align-items-center justify-content-center">
-            <img className='profilePhoto' src={image? image: require('./logo.png')} style={{'height': "150px", 'width': "150px"}} alt="" srcset="" />
-              <div class="input-group">
-                  <label className='btn bg-dark editIcon rounded-circle bg-white shadow' style={{'right': '90px', 'top': '45px'}} for="inputGroupFile01"><box-icon type='solid' color="black" name='pencil'></box-icon></label>
-                  <input  class="btn bg-dark editIcon form-control" type="file" onChange={handleImage}  id="inputGroupFile01" hidden />
+            <img className='profilePhoto ms-4' src={image? image: require('./logo.png')} style={{'height': "150px", 'width': "150px"}} alt=""  />
+              <div className="input-group">
+                  <label className='btn bg-dark editIcon rounded-circle bg-white shadow' style={{'right': '90px', 'top': '45px'}} htmlFor="inputGroupFile01"><box-icon type='solid' color="black" name='pencil'></box-icon></label>
+                  <input  className="btn bg-dark editIcon form-control" type="file" onChange={handleImage}  id="inputGroupFile01" hidden />
               </div>
             </div>
           </div>
           <div className="col-8">
             
-          <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">First Name</label>
-          <input type="text" class="form-control" value={firstName} onChange={e=> setFirstName(e.target.value)} id="fName" placeholder="Enter First Name" />
+          <div className="mb-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
+          <input type="text" className="form-control" value={firstName} onChange={e=> setFirstName(e.target.value)} id="fName" placeholder="Enter First Name" />
           </div>
-          <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Last Name</label>
-          <input type="text" class="form-control" value={lastName} onChange={e=> setLastName(e.target.value)} id="lName" placeholder="Enter Last Name" />
+          <div className="mb-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+          <input type="text" className="form-control" value={lastName} onChange={e=> setLastName(e.target.value)} id="lName" placeholder="Enter Last Name" />
           </div>
-          <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="eMail" disabled placeholder={email} />
+          <div className="mb-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
+          <input type="email" className="form-control" id="eMail" disabled placeholder={email} />
           </div>
-          <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="phone" value={updatePhone} onChange={e=> setUpdatedPhone(e.target.value)} placeholder="Enter Phone number" />
+          <div className="mb-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">Phone Number</label>
+          <input type="tel" className="form-control" id="phone" value={updatePhone} onChange={e=> setUpdatedPhone(e.target.value)} placeholder="Enter Phone number" />
           </div>
 
 
@@ -167,9 +177,9 @@ export const ProfileBanner = () => {
             
         </div>
       </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-dark myDark" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn text-white myOrange" onClick={updateInfo}>Save changes</button>
+      <div className="modal-footer border-0">
+        <button type="button" className="btn btn-dark myDark" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" className="btn text-white myOrange" onClick={updateInfo}>Save changes</button>
       </div>
     </div>
   </div>
@@ -181,6 +191,7 @@ export const ProfileBanner = () => {
 <Weblinks webLinks={webLinks} />
 <ProfessionalInfo ProfessionalInfo={professionalInfo} />
 <Password Password={password} />
+<Interests Interests={interests} />
 </div>
 
   )
@@ -191,7 +202,6 @@ export const ProfileBanner = () => {
 
 
 const postImage = (photo) => {
-  // alert(photo)
   const token = window.localStorage.getItem('token')
   fetch('http://localhost:3001/api/updateProfilePic', {
       method: 'POST',
@@ -203,27 +213,24 @@ const postImage = (photo) => {
   .then(res => res.json())
   .then(data => {
       if(data.error) {
-          // navigate('/')
           console.log(data.error)
       }
       else{
-          console.log(data)
+          console.log('Image uploaded successfully')
+          toast.success('Profile Picture Updated')
       }
   }
   )
 }
 
 const handleImage = (e) => {
-  // alert('hello')
   var file = e.target.files[0]
   var reader = new FileReader()
   reader.readAsDataURL(file)
   reader.onloadend = function(){
-      console.log(reader.result)
+      // console.log(reader.result)
       postImage(reader.result)
   }
-
-
 
 }
 

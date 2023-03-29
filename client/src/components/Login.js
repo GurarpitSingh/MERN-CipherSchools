@@ -11,6 +11,9 @@ const Login = () => {
     const navigate = useNavigate()
     useEffect(() => {
         document.title = 'Login'
+        if(localStorage.getItem('token') !== null){
+            localStorage.clear()
+        }
     }, [])
 
     const loginUser = async (e) => {
@@ -47,10 +50,10 @@ const Login = () => {
                         <h2 className='mb-4 text-center'>Sign-In</h2>
                         <form  name="userLoginForm" onSubmit={loginUser} > 
                             <div className="d-flex form-group my-2 border-bottom border-dark">
-                            <i class="fa-regular fa-id-card pt-2 fa-15x pe-3 text-muted"></i><input type="text" name="username" className="my-form-control border-0 bg-trans " value={username}  onChange={(e) => setUsername(e.target.value)} placeholder="Username" required="required" />
+                            <i className="fa-regular fa-id-card pt-2 fa-15x pe-3 text-muted"></i><input type="text" name="username" className="my-form-control border-0 bg-trans " value={username}  onChange={(e) => setUsername(e.target.value)} placeholder="Username" required="required" />
                             </div>
                             <div className="d-flex form-group my-2 border-bottom border-dark">    
-                            <i class="fa-solid fa-key pt-2 fa-15x pe-3 text-muted"></i><input type="password" name="password" className="my-form-control border-0 bg-trans " value={password}  onChange={(e) => setPassword(e.target.value)} placeholder="Password" required="required" />
+                            <i className="fa-solid fa-key pt-2 fa-15x pe-3 text-muted"></i><input type="password" name="password" className="my-form-control border-0 bg-trans " value={password}  onChange={(e) => setPassword(e.target.value)} placeholder="Password" required="required" />
                             </div>
                             <div className="d-flex justify-content-center form-group my-4 ">
                                 <button type="submit" className="btn btn-primary  w-100 ">Sign In</button>

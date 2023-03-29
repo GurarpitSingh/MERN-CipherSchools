@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Password = (props) => {
 
@@ -33,6 +35,7 @@ const Password = (props) => {
             }
             else{
                 console.log(data)
+                toast.success('Password updated successfully')
             }
         }
         )
@@ -56,9 +59,9 @@ const Password = (props) => {
                 <div className="row my-1">
                     
                     <div className="col-12">
-                        <label class="form-label mb-1 webTitles fontBlue ">Password</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">Password</label>
                         <div className="d-flex bg-white rounded dropdown">
-                        <input type="password" class="form-control border-0 noFocusBorder bg-white" value={password} onChange={e=> setPassword(e.target.value)} placeholder={password} />
+                        <input type="password" className="form-control border-0 noFocusBorder bg-white" value={password} onChange={e=> setPassword(e.target.value)} placeholder='Enter a new password' required />
                         </div>
                     </div>
                     

@@ -65,7 +65,8 @@ const userSchema = new Schema({
         type: String,
     },
     interests: {
-        type: Object,
+        type: Array,
+        
     },
     })
 

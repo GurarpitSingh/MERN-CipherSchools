@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = () => {
@@ -29,6 +31,7 @@ const Register = () => {
             var resp = await res.json()
             console.log(resp);
             alert("User registered successfully")
+            // toast.success('User registered successfully')
             navigate('/login')
         }
         else {
@@ -47,19 +50,19 @@ const Register = () => {
             <form onSubmit={registerUser}>
             
             <div className="d-flex form-group my-2 border-bottom border-dark">
-            <i class="fa-sharp fa-regular fa-15x fa-user pt-2 pe-4 text-muted "></i> <input type="text" name='name' className="my-form-control border-0 bg-trans  " value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" required />
+            <i className="fa-sharp fa-regular fa-15x fa-user pt-2 pe-4 text-muted "></i> <input type="text" name='name' className="my-form-control border-0 bg-trans  " value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" required />
                 </div>
             <div className="d-flex form-group my-2 border-bottom border-dark">
-            <i class="fa-regular fa-id-card pt-2 fa-15x pe-3 text-muted"></i><input type="text" name='username' className="my-form-control border-0 bg-trans " value={username} onChange={(e) => setUsername(e.target.value)} id="name" placeholder="Enter Username" required />
+            <i className="fa-regular fa-id-card pt-2 fa-15x pe-3 text-muted"></i><input type="text" name='username' className="my-form-control border-0 bg-trans " value={username} onChange={(e) => setUsername(e.target.value)} id="name" placeholder="Enter Username" required />
                 </div>
                 <div className="d-flex form-group my-2 border-bottom border-dark">
-                <i class="fa-regular fa-envelope pt-2 fa-15x pe-3 text-muted"></i><input type="email" name='email' className="my-form-control border-0 bg-trans " id="regEmail" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder="Enter E-mail" required />
+                <i className="fa-regular fa-envelope pt-2 fa-15x pe-3 text-muted"></i><input type="email" name='email' className="my-form-control border-0 bg-trans " id="regEmail" value={email} onChange={(e) => setEmail(e.target.value)}  placeholder="Enter E-mail" required />
                 </div>
                 <div className="d-flex form-group my-2 border-bottom border-dark">
-                <i class="fa-solid fa-key pt-2 fa-15x pe-3 text-muted"></i><input type="password" name='password' className="my-form-control border-0 bg-trans" id="regPass" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" required />
+                <i className="fa-solid fa-key pt-2 fa-15x pe-3 text-muted"></i><input type="password" name='password' className="my-form-control border-0 bg-trans" id="regPass" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" required />
                 </div>
                 <div className="d-flex form-group my-2 border-bottom border-dark">
-                <i class="fa-regular fa-calendar-days pt-2 fa-15x pe-3 text-muted"></i><input type="date" name='date' className="my-form-control border-0 bg-transx" id="regDate" value={dob} onChange={(e) => setDob(e.target.value)} placeholder="Date of Birth" required />
+                <i className="fa-regular fa-calendar-days pt-2 fa-15x pe-3 text-muted"></i><input type="date" name='date' className="my-form-control border-0 bg-transx" id="regDate" value={dob} onChange={(e) => setDob(e.target.value)} placeholder="Date of Birth" required />
                 </div>
                 <div className="d-flex justify-content-center form-group my-4 ">
                  <button type="submit" className="btn btn-primary  w-100 ">Register</button>

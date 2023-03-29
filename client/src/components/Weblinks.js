@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './css/Weblinks.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Weblinks = (props) => {
+    // States for the web links
     const [edit, setEdit] = useState('block')
     const [submit, setSubmit] = useState('none')
 
@@ -13,7 +16,7 @@ const Weblinks = (props) => {
     const [github, setGithub] = useState('')
     const [website, setWebsite] = useState('')
 
-    // console.log(props);
+    // State change on props change
     useEffect(() => {
         setFacebook(props.webLinks[4])
         setTwitter(props.webLinks[2])
@@ -23,7 +26,7 @@ const Weblinks = (props) => {
         setWebsite(props.webLinks[5])
     }, [props])
 
-
+    // Handle the web links
     const handleWebLinks = () => {
         setSubmit('none')
         setEdit('block')
@@ -39,11 +42,12 @@ const Weblinks = (props) => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            toast.success('Information updated successfully')
         })
     }
 
 
-
+    // Edit the web links
     const editWebLinks = () => {
         setSubmit('block')
         setEdit('none')
@@ -65,48 +69,46 @@ const Weblinks = (props) => {
             <fieldset id='disableField' className="row" disabled>
                 <div className="row my-1">
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">LinkedIn</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">LinkedIn</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1 ' size='sm' color='white' name='linkedin'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={linkedin} onChange={e=> setLinkedin(e.target.value)} placeholder={linkedin} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1 ' size='sm' color='white' name='linkedin'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={linkedin} onChange={e=> setLinkedin(e.target.value)} placeholder={linkedin} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">GitHub</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">GitHub</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='github'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={github} onChange={e=> setGithub(e.target.value)} placeholder={github} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='github'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={github} onChange={e=> setGithub(e.target.value)} placeholder={github} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">Facebook</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">Facebook</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='facebook-circle'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={facebook} onChange={e=> setFacebook(e.target.value)} placeholder={facebook} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='facebook-circle'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={facebook} onChange={e=> setFacebook(e.target.value)} placeholder={facebook} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                 </div>
 
                 <div className="row my-1">
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">Twitter</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">Twitter</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='twitter'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={twitter} onChange={e=> setTwitter(e.target.value)} placeholder={twitter} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='twitter'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={twitter} onChange={e=> setTwitter(e.target.value)} placeholder={twitter} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">Instagram</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">Instagram</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='instagram'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={instagram} onChange={e=> setInstagram(e.target.value)} placeholder={instagram} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='instagram'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={instagram} onChange={e=> setInstagram(e.target.value)} placeholder={instagram} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <label class="form-label mb-1 webTitles fontBlue ">Website</label>
+                        <label className="form-label mb-1 webTitles fontBlue ">Website</label>
                         <div className="d-flex bg-white rounded">
-                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='globe'></box-icon><input type="text" class="form-control border-0 noFocusBorder bg-white" value={website} onChange={e=> setWebsite(e.target.value)} placeholder={website} /><box-icon type='solid' class='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
+                        <box-icon type='logo' class='bg-secondary round ms-3 my-1 me-1' size='sm' color='white' name='globe'></box-icon><input type="text" className="form-control border-0 noFocusBorder bg-white" value={website} onChange={e=> setWebsite(e.target.value)} placeholder={website} /><box-icon type='solid' className='mt-2 me-3' style={{'display': submit}} color='grey' name='pencil'></box-icon>
                         </div>
                     </div>
                 </div>
             </fieldset>
-
-
     </div>
     <div className="border-bottom mx-5"></div>
     </div>
