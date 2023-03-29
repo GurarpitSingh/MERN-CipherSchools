@@ -1,0 +1,16 @@
+.webTitles{
+        font-size: 14px;
+        font-weight: 550;
+        line-height: 1.5;
+}
+.noFocusBorder:focus{
+        box-shadow: none;
+}
+
+.round{
+        border-radius: 50%;
+       min-width: 30px;
+       height: 30px;
+       padding: 2px;
+    
+}

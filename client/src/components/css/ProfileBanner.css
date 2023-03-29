@@ -1,0 +1,57 @@
+.backBanner{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+
+background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url('https://www.cipherschools.com/static/media/ProfileCover.e525f2d51356332792cb.png');
+/* background-image: url('https://www.cipherschools.com/static/media/ProfileCover.e525f2d51356332792cb.png'); */
+
+    /* height: 200px; */
+    width: 100%;
+    /* position: relative;
+    z-index: -1; */
+}
+.profilePhoto{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    
+}
+.editIcon{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    margin-top: 70px;
+    padding: 3px;
+}
+.modal{
+    /* width: 600px !important; */
+
+    --bs-modal-width: 600px;
+}
+.myDark{
+    background-color: #2D3333;
+    padding: 5px 10px;
+    font-size: small;
+}
+.myOrange{
+    background-color: #F49D45;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: small;
+
+}
+.myOrange:hover{
+    background-color: #f49331;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: small;
+
+
+}
+.fontBlue{
+    color: #2C3D4F;
+}
