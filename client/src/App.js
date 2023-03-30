@@ -82,18 +82,25 @@ const Root = () => {
                     color="grey"
                     name="bell"
                   ></box-icon>
-                  <div className="dropstart me-3 dropdown-toggle"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false">
+                  <div className="dropstart me-3 ">
                     <img
                       type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
                       src={require("./components/logo.png")}
-                      className="ms-3 p-0 "
+                      className="ms-3 p-0 dropdown-toggle"
                       style={{ height: "20px", margin: "5px" }}
                       alt=""
                     />
-                    
+                    <box-icon
+                      style={{
+                        position: "absolute",
+                        marginLeft: "-8px",
+                        marginTop: "3px",
+                        pointer: "cursor",
+                      }}
+                      name="chevron-down"
+                    ></box-icon>
                     <ul className="dropdown-menu">
                       <li>
                         <Link className="dropdown-item" to={"./"}>
