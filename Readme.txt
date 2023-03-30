@@ -1,5 +1,8 @@
-This is JWT Secured Authentication gateway made for Quantum as assignment.
+This is JWT Secured profile management application made for CipherSchools as assignment.
 Made using MERN/
+
+
+NOTE: .env file is included in repo for a limited period of time for evaluation purposes.
 
 Steps to Install:
 1. The root directory contains two directories:
