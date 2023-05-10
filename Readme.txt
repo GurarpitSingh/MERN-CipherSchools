@@ -1,4 +1,4 @@
-This is JWT Secured profile management application made for CipherSchools as assignment.
+This is JWT Secured profile management application.
 Made using MERN/
 
 
